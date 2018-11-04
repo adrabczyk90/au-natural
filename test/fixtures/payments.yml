@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  paymentId: MyString
+  paymentType: MyString
+  allowed: MyString
+
+two:
+  paymentId: MyString
+  paymentType: MyString
+  allowed: MyString

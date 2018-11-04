@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  shipperId: MyString
+  companyName: MyString
+  phone: MyString
+
+two:
+  shipperId: MyString
+  companyName: MyString
+  phone: MyString
