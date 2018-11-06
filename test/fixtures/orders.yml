@@ -1,21 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  orderId: MyString
-  customerId: MyString
-  orderName: MyString
-  paymentId: MyString
-  orderDate: MyText
-  shipDate: MyText
-  paid: MyString
-  paymentDate: MyText
+  first_name: MyString
+  last_name: MyString
+  sub_total: 9.99
 
 two:
-  orderId: MyString
-  customerId: MyString
-  orderName: MyString
-  paymentId: MyString
-  orderDate: MyText
-  shipDate: MyText
-  paid: MyString
-  paymentDate: MyText
+  first_name: MyString
+  last_name: MyString
+  sub_total: 9.99
