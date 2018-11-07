@@ -4,7 +4,7 @@ class OrderItemsController < ApplicationController
   # GET /order_items
   # GET /order_items.json
   def index
-    @order_items = OrderItem.all
+     @items = current_cart.order.items
   end
 
   # GET /order_items/1
@@ -24,18 +24,27 @@ class OrderItemsController < ApplicationController
   # POST /order_items
   # POST /order_items.json
   def create
-    @order_item = OrderItem.new(order_item_params)
+    current_cart.add_item(
+      product_id: params[:product_id],
+      quantity: params[:quantity]
+    )
 
-    respond_to do |format|
-      if @order_item.save
-        format.html { redirect_to @order_item, notice: 'Order item was successfully created.' }
-        format.json { render :show, status: :created, location: @order_item }
-      else
-        format.html { render :new }
-        format.json { render json: @order_item.errors, status: :unprocessable_entity }
-      end
-    end
+    redirect_to cart_path
   end
+  
+  # def create
+   #  @order_item = OrderItem.new(order_item_params)
+
+   #  respond_to do |format|
+   #    if @order_item.save
+    #     format.html { redirect_to @order_item, notice: 'Order item was successfully created.' }
+    #     format.json { render :show, status: :created, location: @order_item }
+     #  else
+      #   format.html { render :new }
+     #    format.json { render json: @order_item.errors, status: :unprocessable_entity }
+     #  end
+     #end
+   #end
 
   # PATCH/PUT /order_items/1
   # PATCH/PUT /order_items/1.json
@@ -53,13 +62,17 @@ class OrderItemsController < ApplicationController
 
   # DELETE /order_items/1
   # DELETE /order_items/1.json
-  def destroy
-    @order_item.destroy
-    respond_to do |format|
-      format.html { redirect_to order_items_url, notice: 'Order item was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+   def destroy
+    current_cart.remove_item(id: params[:id])
+    redirect_to cart_path
   end
+ # def destroy
+  #  @order_item.destroy
+  #  respond_to do |format|
+  #    format.html { redirect_to order_items_url, notice: 'Order item was successfully destroyed.' }
+  #    format.json { head :no_content }
+   # end
+  #end
 
   private
     # Use callbacks to share common setup or constraints between actions.
