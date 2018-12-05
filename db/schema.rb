@@ -27,17 +27,19 @@ ActiveRecord::Schema.define(version: 2018_11_07_102805) do
   end
 
   create_table "order_items", force: :cascade do |t|
-    t.string "quantity", default: "0", null: false
-    t.string "price", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "order_id", null: false
+    t.bigint "order_id"
+    t.bigint "product_id"
+    t.integer "quantity"
+    t.decimal "price", precision: 15, scale: 2
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.index ["order_id"], name: "index_order_items_on_order_id"
+    t.index ["product_id"], name: "index_order_items_on_product_id"
   end
 
   create_table "orders", force: :cascade do |t|
     t.string "first_name"
-    t.string "last_name", null: false
+    t.string "last_name"
     t.decimal "sub_total", precision: 15, scale: 2, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

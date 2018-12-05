@@ -1,25 +1,12 @@
-<h2>
-    <%= link_to "Categories", root_path %> /
-    <%= @category.title %> /
-    Products
-</h2>
+<h2>Categories (<%= @categories.length %>) </h2>
 
 <ol>
-    <% @products.each do |product| %>
-        <li>
-            <% products.title %> (<%= number_to_currency product.price %>)
-            
-            <%= form_tag order_items_path do %>
-            <%= hidden_field_tag :productId, product.id %>
-            <%= hidden_field_tag :quantity, 1 %>
-            <%= submit_tag "Add to Cart" %>
-        <% end %>
-        
-        <ul>
-            <%= products.variants.each do |variant| %>
-            <li> <%= variant.productTitle %> (<%= number_to_currency variant.price %>) </li>
-            <% end %>
-         </ul>
-       </li>
-   <% end %>
+  <% @categories.each do |category| %>
+    <li>
+      <%= link_to category_products_path(category) do %>
+        <%= category.title %>
+        (<%= category.products_count %> products)
+      <% end %>
+    </li>
+  <% end %>
 </ol>
