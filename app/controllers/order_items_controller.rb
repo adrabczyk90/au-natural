@@ -62,10 +62,10 @@ class OrderItemsController < ApplicationController
 
 #   # DELETE /order_items/1
 #   # DELETE /order_items/1.json
-#   def destroy
-#     current_cart.remove_item(id: params[:id])
-#     redirect_to cart_path
-#   end
+   def destroy
+     current_cart.remove_item(id: params[:id])
+     redirect_to cart_path
+   end
 # # def destroy
 #   #  @order_item.destroy
 #   #  respond_to do |format|
