@@ -10,6 +10,8 @@ Rails.application.routes.draw do
     resources :categories, only: [:index] do
       resources :products, only: [:index]
   end
+  
+   root to: 'welcome#show'
 
    get '/cart', to: 'order_items#index'
    resources :order_items, path: '/cart/items'
