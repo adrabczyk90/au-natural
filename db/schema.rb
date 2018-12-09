@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 2018_12_08_135308) do
     t.string "title", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["title"], name: "index_categories_on_title", unique: true
   end
 
   create_table "order_items", force: :cascade do |t|
@@ -31,8 +32,8 @@ ActiveRecord::Schema.define(version: 2018_12_08_135308) do
     t.bigint "product_id"
     t.integer "quantity"
     t.decimal "price", precision: 15, scale: 2
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["order_id"], name: "index_order_items_on_order_id"
     t.index ["product_id"], name: "index_order_items_on_product_id"
   end
@@ -57,18 +58,18 @@ ActiveRecord::Schema.define(version: 2018_12_08_135308) do
   end
 
   create_table "product_variants", force: :cascade do |t|
-    t.string "title", null: false
+    t.bigint "product_id", null: false
+    t.string "title", limit: 100, null: false
     t.decimal "price", precision: 15, scale: 2, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "product_id", null: false
     t.index ["product_id"], name: "index_product_variants_on_product_id"
   end
 
   create_table "products", force: :cascade do |t|
-    t.string "title", null: false
+    t.string "title", limit: 150, null: false
+    t.decimal "price", precision: 15, scale: 2, default: "0.0", null: false
     t.text "description"
-    t.decimal "price", precision: 15, scale: 2, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -84,8 +85,9 @@ ActiveRecord::Schema.define(version: 2018_12_08_135308) do
     t.index ["remember_token"], name: "index_users_on_remember_token"
   end
 
-  add_foreign_key "order_items", "orders"
-  add_foreign_key "product_categories", "categories"
-  add_foreign_key "product_categories", "products"
-  add_foreign_key "product_variants", "products"
+  add_foreign_key "order_items", "orders", name: "fk_order_items_to_order"
+  add_foreign_key "order_items", "products", name: "fk_order_items_to_product"
+  add_foreign_key "product_categories", "categories", name: "fk_product_categories_to_categories"
+  add_foreign_key "product_categories", "products", name: "fk_product_categories_to_products"
+  add_foreign_key "product_variants", "products", name: "fk_product_variants_to_product"
 end

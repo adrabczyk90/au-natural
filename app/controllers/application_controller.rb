@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  
+  require 'singleton'
   include Clearance::Controller
   protect_from_forgery with: :exception
 

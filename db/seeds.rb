@@ -44,6 +44,8 @@ PRODUCTS_COUNT.times do
       )
     end
   end
+  
+  Faker::Avatar
 
   product.save!
 
