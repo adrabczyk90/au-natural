@@ -79,6 +79,7 @@ ActiveRecord::Schema.define(version: 2018_12_08_135308) do
     t.index ["remember_token"], name: "index_users_on_remember_token"
   end
 
+
   add_foreign_key "order_items", "orders", name: "fk_order_items_to_order"
   add_foreign_key "order_items", "products", name: "fk_order_items_to_product"
   add_foreign_key "product_categories", "categories", name: "fk_product_categories_to_categories"
