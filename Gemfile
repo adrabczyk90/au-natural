@@ -70,6 +70,7 @@ end
 
 group :development do
   gem 'clearance'
+  gem 'listen'
 end
 
 gem 'clearance'
